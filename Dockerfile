@@ -4,10 +4,13 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y build-essential curl
-
 # Install system dependencies required for locust-plugins
-RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy the requirements file into the container at /usr/src/app
 COPY requirements.txt ./
